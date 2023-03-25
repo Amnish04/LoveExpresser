@@ -49,17 +49,22 @@ export class AppComponent implements OnInit {
     }
   }
 
-  onHeartMouseUp(evt?) {
+  onHeartMouseUp(fromOutside = false) {
     this.heartCountDownIteration = 0;
     clearInterval(this.heartCountDown);
     this.heartCountDown = null;
+
+    // Remove main view listener after stopping countdown
+    if (fromOutside) {
+      this.onHeartMouseUp();
+    }
   }
 
   //#region Fix Infinite Timer
 
   onHeartMouseOut(evt?) {
     this.renderer.listen(this.mainView.nativeElement, 'mouseup', (evt) => {
-      this.onHeartMouseUp();
+      this.onHeartMouseUp(true);
     });
   }
 
