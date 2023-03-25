@@ -124,14 +124,28 @@ main {
 }
 
 #secondView {
-  scale: 0;
-  transition: scale 300ms ease-in-out;
+  /* scale: 0; */
+  animation: emerge 300ms ease-in-out forwards;
 }
 
 #secondView p {
   font-size: 5em;
   padding: 0;
   margin: 0;
+}
+
+@keyframes emerge {
+  0% {
+    scale: 0;
+  }
+
+  50% {
+    scale: 1.25;
+  }
+
+  100% {
+    scale: 1;
+  }
 }
 
 #playAgainButton {

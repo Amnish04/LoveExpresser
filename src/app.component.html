@@ -1,8 +1,13 @@
-<main>
-  <div *ngIf="currentView === Views.FirstView" id="firstView">
+<main #mainView>
+  <div *ngIf="currentView === AppViews.FirstView" id="firstView">
     <h1 class="main-heading">For my First Love</h1>
     <button title="Hold my heart!" class="heart-button">
       <svg
+        #heartIcon
+        (click)="onHeartClick($event)"
+        (mousedown)="onHeartMouseDown($event)"
+        (mouseup)="onHeartMouseUp($event)"
+        (mouseout)="onHeartMouseOut($event)"
         xmlns="http://www.w3.org/2000/svg"
         width="40"
         height="30"
@@ -19,14 +24,30 @@
     </button>
   </div>
 
-  <div *ngIf="currentView === Views.SecondView" id="secondView">
+  <div *ngIf="currentView === AppViews.SecondView" id="secondView">
     <p>She Loves Me!</p>
 
     <div class="flex-center">
-      <button class="button-fancy" id="playAgainButton">Play with Heart</button>
+      <button
+        (click)="onPlayAgainButton($event)"
+        class="button-fancy"
+        #playAgainButton
+        id="playAgainButton"
+      >
+        Play with Heart
+      </button>
     </div>
   </div>
 
-  <div id="fallOnLeft"></div>
-  <div id="fallOnRight"></div>
+  <ng-container *ngIf="heartCountDownIteration < 6">
+    <div *ngIf="heartCountDownIteration % 2 === 1" id="fallOnLeft">
+      {{ heartCountDownIteration }}
+    </div>
+    <div
+      *ngIf="heartCountDownIteration % 2 === 0 && heartCountDownIteration"
+      id="fallOnRight"
+    >
+      {{ heartCountDownIteration }}
+    </div>
+  </ng-container>
 </main>
