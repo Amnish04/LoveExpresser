@@ -120,11 +120,10 @@ main {
 /* endregion */
 
 #firstView {
-  transition: all 3000ms ease-in-out;
+  animation: emerge 300ms ease-in-out forwards;
 }
 
 #secondView {
-  /* scale: 0; */
   animation: emerge 300ms ease-in-out forwards;
 }
 
