@@ -36,11 +36,6 @@ export class AppComponent implements OnInit {
     this.currentView = AppViews.FirstView;
   }
 
-  onHeartClick(evt) {
-    // this.currentView = AppViews.SecondView;
-    // Do Nothing for now
-  }
-
   onHeartMouseDown(evt) {
     if (!isDefNotNull(this.heartCountDown)) {
       this.heartCountDown = setInterval(() => {
