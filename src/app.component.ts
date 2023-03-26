@@ -14,7 +14,6 @@ import { isDefNotNull } from '../utilities/helper-functions';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   AppViews = AppViews;
@@ -28,6 +27,7 @@ export class AppComponent implements OnInit {
   heartCountDownIteration = 0;
   heartCountDownTimeSec = 1.25;
   heartCountDownTotalTime = 5;
+  countDownFixListener = null;
 
   constructor(private renderer: Renderer2) {}
 
@@ -57,16 +57,20 @@ export class AppComponent implements OnInit {
 
     // Remove main view listener after stopping countdown
     if (fromOutside) {
-      this.onHeartMouseUp();
+      this.countDownFixListener();
     }
   }
 
   //#region Fix Infinite Timer
 
   onHeartMouseOut(evt?) {
-    this.renderer.listen(this.mainView.nativeElement, 'mouseup', (evt) => {
-      this.onHeartMouseUp(true);
-    });
+    this.countDownFixListener = this.renderer.listen(
+      this.mainView.nativeElement,
+      'mouseup',
+      (evt) => {
+        this.onHeartMouseUp(true);
+      }
+    );
   }
 
   //endregion
