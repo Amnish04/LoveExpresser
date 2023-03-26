@@ -219,7 +219,10 @@ main {
 .left-hanging-option {
   position: absolute;
   width: var(--hanging-button-width);
-  left: -1000px;
+  left: calc(
+    -1 * ((var(--hanging-string-length) * sin(45deg)) +
+          (var(--hanging-button-width) / 2))
+  ); /* -ve (stringLength.sin(45deg)) + (buttonWidth / 2) */
   top: calc(var(--hanging-string-length) * sin(45deg));
 }
 
