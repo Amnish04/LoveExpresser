@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   @ViewChild('playAgainButton') playAgainButton: ElementRef;
   @ViewChild('mainView') mainView: ElementRef;
 
-  currentView = AppViews.SecondView; // Change back to FirstView
+  currentView = AppViews.FirstView;
 
   heartCountDown = null;
   heartCountDownIteration = 0;

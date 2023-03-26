@@ -1,11 +1,7 @@
 <main #mainView>
   <div *ngIf="currentView === AppViews.FirstView" id="firstView">
     <h1 class="main-heading">For my First Love</h1>
-    <button
-      title="Hold my heart!"
-      class="heart-button"
-      (click)="currentView = AppViews.SecondView"
-    >
+    <button title="Hold my heart!" class="heart-button">
       <svg
         #heartIcon
         (mousedown)="onHeartMouseDown($event)"
