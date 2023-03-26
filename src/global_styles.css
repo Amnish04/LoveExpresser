@@ -3,6 +3,9 @@
 
 :root {
   --romantic-color: #ff9dbd;
+  --danger-color: rgb(240, 15, 15);
+
+  --btn-radius: 10px;
 
   /* Hanging Option Animation */
   --hanging-string-duration: 400ms;
@@ -53,7 +56,7 @@ main {
   min-height: 25px;
   background-color: transparent;
   border: 1px solid;
-  border-radius: 10px;
+  border-radius: var(--btn-radius);
   padding: 1rem;
   font-size: 1.5em;
   font-weight: bold;
@@ -180,7 +183,7 @@ main {
 .button-fancy {
   cursor: pointer;
   border: 1px solid;
-  border-radius: 10px;
+  border-radius: var(--btn-radius);
   background-color: transparent;
   padding: 1rem;
   font-size: 1.5em;
@@ -277,6 +280,34 @@ main {
   100% {
     rotate: -45deg;
   }
+}
+
+/* endregion */
+
+/* region Hover Effects */
+
+.btn-border::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: var(--btn-radius);
+  transition: 100ms ease-in-out;
+}
+
+.btn-border:hover::before,
+.btn-border:focus::before {
+  left: -4px;
+  top: -4px;
+  bottom: -4px;
+  right: -4px;
+  border: 2px solid var(--romantic-color);
+}
+
+.danger-border:hover::before {
+  border: 2px solid var(--danger-color);
 }
 
 /* endregion */

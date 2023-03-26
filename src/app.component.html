@@ -38,8 +38,10 @@
         <div class="hanging-option-container">
           <div class="hanging-option-string-left"></div>
           <div
-            class="left-hanging-option button-fancy"
+            class="left-hanging-option button-fancy btn-border"
             (click)="onLeftButtonClick($event)"
+            [ngClass]="{ blastInCenter: true }"
+            title="Translation link included"
           >
             Yes
           </div>
@@ -48,8 +50,9 @@
         <div class="hanging-option-container">
           <div class="hanging-option-string-right"></div>
           <div
-            class="right-hanging-option button-fancy"
+            class="right-hanging-option button-fancy btn-border danger-border"
             (click)="onRightButtonClick($event)"
+            title="Translation link included"
           >
             Maybe
           </div>

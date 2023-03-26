@@ -73,9 +73,21 @@ export class AppComponent implements OnInit {
 
   onLeftButtonClick(evt) {
     evt.stopPropagation();
+
+    window.open(
+      'https://www.petervis.com/gallery/web/bollywood-translations/tujh-mein-rab-dikhta-hai-english-translation.html',
+      '_blank'
+    );
+    window.open('https://www.youtube.com/watch?v=qoq8B8ThgEM', '_blank');
   }
 
   onRightButtonClick(evt) {
     evt.stopPropagation();
+
+    window.open(
+      'https://www.bollynook.com/en/lyrics/7454/haule-haule/',
+      '_blank'
+    );
+    window.open('https://www.youtube.com/watch?v=XgdY_s1LsZc', '_blank');
   }
 }
