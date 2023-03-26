@@ -9,7 +9,7 @@
   --hanging-tilt-duration: 250ms;
   --hanging-option-container-length: 150px;
   --hanging-string-length: 112.5px;
-  --hanging-button-width: 120px;
+  --hanging-button-width: 135px;
 
   --string-scale-duration: 300ms;
   --string-tilt-duration: 200ms;
@@ -219,11 +219,16 @@ main {
 .left-hanging-option {
   position: absolute;
   width: var(--hanging-button-width);
+  scale: 0;
   left: calc(
     -1 * ((var(--hanging-string-length) * sin(45deg)) +
           (var(--hanging-button-width) / 2))
   ); /* -ve (stringLength.sin(45deg)) + (buttonWidth / 2) */
   top: calc(var(--hanging-string-length) * sin(45deg));
+
+  animation: emerge 300ms ease-in-out
+    calc(var(--string-scale-duration) + var(--string-tilt-duration) + 50ms)
+    forwards;
 }
 
 .right-hanging-option {
@@ -238,7 +243,8 @@ main {
   top: calc(var(--hanging-string-length) * sin(45deg));
 
   animation: emerge 300ms ease-in-out
-    calc(var(--string-scale-duration) + var(--string-tilt-duration)) forwards;
+    calc(var(--string-scale-duration) + var(--string-tilt-duration) + 50ms)
+    forwards;
 }
 
 @keyframes scaleFromTop {
