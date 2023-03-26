@@ -1,7 +1,11 @@
 <main #mainView>
   <div *ngIf="currentView === AppViews.FirstView" id="firstView">
     <h1 class="main-heading">For my First Love</h1>
-    <button title="Hold my heart!" class="heart-button">
+    <button
+      title="Hold my heart!"
+      class="heart-button"
+      (click)="currentView = AppViews.SecondView"
+    >
       <svg
         #heartIcon
         (mousedown)="onHeartMouseDown($event)"
@@ -24,7 +28,7 @@
   </div>
 
   <div *ngIf="currentView === AppViews.SecondView" id="secondView">
-    <p>She Loves Me!</p>
+    <p>She Loves Me !?</p>
 
     <div class="flex-center">
       <button
@@ -34,6 +38,26 @@
         id="playAgainButton"
       >
         Play with Heart
+
+        <div class="hanging-option-container">
+          <div class="hanging-option-string-left"></div>
+          <div
+            class="left-hanging-option button-fancy"
+            (click)="onLeftButtonClick($event)"
+          >
+            Left
+          </div>
+        </div>
+
+        <div class="hanging-option-container">
+          <div class="hanging-option-string-right"></div>
+          <div
+            class="right-hanging-option button-fancy"
+            (click)="onRightButtonClick($event)"
+          >
+            Right
+          </div>
+        </div>
       </button>
     </div>
   </div>

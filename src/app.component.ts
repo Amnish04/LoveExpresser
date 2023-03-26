@@ -22,11 +22,12 @@ export class AppComponent implements OnInit {
   @ViewChild('playAgainButton') playAgainButton: ElementRef;
   @ViewChild('mainView') mainView: ElementRef;
 
-  currentView = AppViews.FirstView;
+  currentView = AppViews.SecondView; // Change back to FirstView
 
   heartCountDown = null;
   heartCountDownIteration = 0;
   heartCountDownTimeSec = 1.25;
+  heartCountDownTotalTime = 5;
 
   constructor(private renderer: Renderer2) {}
 
@@ -41,7 +42,7 @@ export class AppComponent implements OnInit {
       this.heartCountDown = setInterval(() => {
         ++this.heartCountDownIteration;
 
-        if (this.heartCountDownIteration === 6) {
+        if (this.heartCountDownIteration === this.heartCountDownTotalTime + 1) {
           this.currentView = AppViews.SecondView;
           this.onHeartMouseUp();
         }
@@ -69,4 +70,12 @@ export class AppComponent implements OnInit {
   }
 
   //endregion
+
+  onLeftButtonClick(evt) {
+    evt.stopPropagation();
+  }
+
+  onRightButtonClick(evt) {
+    evt.stopPropagation();
+  }
 }

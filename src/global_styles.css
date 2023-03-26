@@ -3,10 +3,24 @@
 
 :root {
   --romantic-color: #ff9dbd;
+
+  /* Hanging Option Animation */
+  --hanging-string-duration: 400ms;
+  --hanging-tilt-duration: 250ms;
+  --hanging-option-container-length: 150px;
+  --hanging-string-length: 112.5px;
+  --hanging-button-width: 120px;
+
+  --string-scale-duration: 300ms;
+  --string-tilt-duration: 200ms;
 }
 
 ::selection {
   background-color: var(--romantic-color);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -29,13 +43,12 @@ main {
 }
 
 .heart-button {
-  padding: 0;
   cursor: pointer;
   display: flex;
   flex-wrap: wrap;
   gap: 0.1em;
-  /*   min-width: 25px; */
-  /*   min-height: 25px; */
+  min-width: 25px;
+  min-height: 25px;
   background-color: transparent;
   border: 1px solid;
   border-radius: 10px;
@@ -152,6 +165,10 @@ main {
   text-align: center;
 }
 
+#playAgainButton:hover {
+  color: var(--romantic-color);
+}
+
 /* Utility Classes */
 .flex-center {
   display: flex;
@@ -159,7 +176,6 @@ main {
 }
 
 .button-fancy {
-  padding: 0;
   cursor: pointer;
   border: 1px solid;
   border-radius: 10px;
@@ -170,3 +186,86 @@ main {
   font-family: 'Romantic', sans-serif;
   color: white;
 }
+
+/* region Hanging Option */
+
+.hanging-option-container {
+  position: absolute;
+  height: var(--hanging-option-container-length);
+  top: 100%;
+  left: 50%;
+}
+
+.hanging-option-string-left {
+  border: 1px solid white;
+  width: 0px;
+  height: var(--hanging-string-length);
+  transform-origin: top;
+  animation: scaleFromTop var(--string-scale-duration) ease-in-out forwards,
+    tiltLeft var(--string-tilt-duration) ease-in-out
+      var(--string-scale-duration) forwards;
+}
+
+.hanging-option-string-right {
+  border: 1px solid white;
+  width: 0px;
+  height: var(--hanging-string-length);
+  transform-origin: top;
+  animation: scaleFromTop var(--string-scale-duration) ease-in-out forwards,
+    tiltRight var(--string-tilt-duration) ease-in-out
+      var(--string-scale-duration) forwards;
+}
+
+.left-hanging-option {
+  position: absolute;
+  width: var(--hanging-button-width);
+  left: -1000px;
+  top: calc(var(--hanging-string-length) * sin(45deg));
+}
+
+.right-hanging-option {
+  position: absolute;
+  width: var(--hanging-button-width);
+  scale: 0;
+  transform-origin: top;
+  left: calc(
+    (var(--hanging-string-length) * sin(45deg)) -
+      (var(--hanging-button-width) / 2)
+  ); /* (stringLength.sin(45deg)) - (buttonWidth / 2) */
+  top: calc(var(--hanging-string-length) * sin(45deg));
+
+  animation: emerge 300ms ease-in-out
+    calc(var(--string-scale-duration) + var(--string-tilt-duration)) forwards;
+}
+
+@keyframes scaleFromTop {
+  0% {
+    transform: scaleY(0);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes tiltLeft {
+  0% {
+    rotate: 0deg;
+  }
+
+  100% {
+    rotate: 45deg;
+  }
+}
+
+@keyframes tiltRight {
+  0% {
+    rotate: 0deg;
+  }
+
+  100% {
+    rotate: -45deg;
+  }
+}
+
+/* endregion */
